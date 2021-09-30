@@ -1,18 +1,3 @@
----
-title: "EDS 222: Week 2: In-class Lab"
-author: "{Student name}"
-date: "`r Sys.Date()`"
-output:
-  tufte::tufte_html: default
-  tufte::tufte_handout:
-    citation_package: natbib
-    latex_engine: xelatex
-  tufte::tufte_book:
-    citation_package: natbib
-    latex_engine: xelatex
----
-
-
 # Section 0: Getting set up
 
 In Thursday lab, we will often be working with exercises based on Introduction to Modern Statistics (Çetinkaya-Rundel and Hardin, 2021). To be able to access the data and custom packages these exercises sometimes rely on, we need to do a bit of setup. This will get you all set for all future labs; you won't need to do it each time.
@@ -22,34 +7,34 @@ In Thursday lab, we will often be working with exercises based on Introduction t
 3. Install the following packages, if they are not already installed:^[Note: This will take a minute or two!]
 
 ```{r setup, include=TRUE, echo=TRUE, eval=FALSE}
-# suppressMessages({
-#   install.packages(
-#     "tidymodels",
-#     "gghighlight",
-#     "glue",
-#     "ggmosaic",
-#     "ggridges",
-#     "gridExtra",
-#     "infer",
-#     "janitor",
-#     "knitr",
-#     "kableExtra",
-#     "maps",
-#     "openintro",
-#     "patchwork",
-#     "quantreg",
-#     "tidyverse",
-#     "scales",
-#     "skimr",
-#     "caret",
-#     "palmerpenguins",
-#     "survival",
-#     "waffle",
-#     "ggrepel",
-#     "ggpubr",
-#     "openintro"
-#   )
-# })
+suppressMessages({
+  install.packages(
+    "tidymodels",
+    "gghighlight",
+    "glue",
+    "ggmosaic",
+    "ggridges",
+    "gridExtra",
+    "infer",
+    "janitor",
+    "knitr",
+    "kableExtra",
+    "maps",
+    "openintro",
+    "patchwork",
+    "quantreg",
+    "tidyverse",
+    "scales",
+    "skimr",
+    "caret",
+    "palmerpenguins",
+    "survival",
+    "waffle",
+    "ggrepel",
+    "ggpubr",
+    "openintro"
+  )
+})
 ```
 
 4. Load all the packages you need, plus the `_common.R` source file.^[Note: If you get a `namespace load` error for `tidyverse`, you want to remove the problem package, reinstall it, and then load `tidyverse` again.]
@@ -61,16 +46,12 @@ library(tidyverse)
 library(readr)
 library(gt)
 library(openintro)
-library(here)
 
 # Where is the root directory where all your labs live? If you want to set up as an .RProj, go for it. 
-# rootdir <- (C:/Users/stvec/Documents/MEDS_2021_2022/02_Fall_21/EDS222_stats_for_env_data_sci_Carleton/R)
+rootdir <- ("~/Dropbox/Teaching/UCSB/EDS_222/EDS222_data/")
 
 # This runs the script _common.R, which loads all the packages we'll need for today and does some extra stuff we won't really use, at least for now.
-
-# source(file.path(rootdir,"labs","_common-local.R")
-
-source(here("labs","_common.R"))
+source(file.path(rootdir,"labs","_common.R"))
 
 # For labs, we want to see all our code
 knitr::opts_chunk$set(echo = TRUE)
@@ -96,23 +77,11 @@ Let's investigate these variable types as stored in `R`. Do they make sense to y
 
 ```{r}
 
-head(loans_full_schema)
-
-
 ```
 
 Create a dataframe called `loans` that cleans up the full dataset `loans_full_schema` to a) make the `homeownership` variable lower case (all caps is intense...), and b) reorder the "levels" of each variable into a sensible order.^[Note: reordering levels with `fct_relevel()` is helpful if your variable has a natural ordering to it, as all visuals will follow the order of the factor levels.] 
 
 ```{r}
-
-loans <- loans_full_schema %>% 
-  mutate(
-    homeownership = tolower(homeownership),
-    homeownership = fct_relevel(homeownership, "rent"),
-    application_type = fct_relevel(application_type, "joint")
-    
-  )
-levels(loans$homeownership)
 
 ```
 
@@ -123,27 +92,6 @@ A bar plot is a common way to display a single categorical variable. The left pa
 > Question: When might you prefer the left version of the bar plot? When might you prefer the right? 
 
 ```{r loan-homeownership-bar-plot, fig.cap = "Two bar plots: the left panel shows the counts and the right panel shows the proportions of values of the homeownership variable.", fig.asp=0.5, fig.fullwidth=TRUE}
-
-# create bar plot using 'open intro" color coding
-
-p_count <- ggplot(data = loans, aes(x = homeownership)) + 
-  geom_bar(fill = IMSCOL["pink", "full"]) +
-  labs(x = "Homeownership", y = "Count")
-
-
-
-# bar plot showing proportion of loans in each homeownership
-p_proportion <- loans %>% 
-  # count creates a new tibble with a total counts with column header 'n'
-  count(homeownership) %>% 
-  mutate(proportion = n / sum(n)) %>% 
-  ggplot(aes(x = homeownership, y = proportion)) +
-  geom_col(fill = IMSCOL["black", "full"]) +
-  labs(x = "Homeownership", y = "Proportion")
-
-p_count + p_proportion
-
-
 
 ```
 
@@ -179,14 +127,6 @@ For example, here we create three bar plots that visualize the relationship betw
 
 ```{r stacked, fig.margin=TRUE, fig.asp = 0.8, out.width="100%"}
 
-p_stacked <- ggplot(loans, aes(x = homeownership, fill = application_type)) +
-  geom_bar()
-
-p_stacked / (p_count + p_proportion)
-
-
-
-
 ```
 
 ### Exercise (work solo or with neighbors): 
@@ -219,8 +159,6 @@ p_dodged
 
 ```{r standardized, fig.margin=TRUE, fig.asp = 0.8, out.width="100%"}
 p_standardized <- ggplot(loans, aes(x = homeownership, fill = application_type)) +
-  
-  # position = "fill" <- creates the full position which adds up to 1
   geom_bar(position = "fill") +
   scale_fill_manual(values = c(IMSCOL["blue", "full"], IMSCOL["yellow", "full"])) +
   labs(x = "Homeownership", y = "Proportion", fill = "Application type")+
