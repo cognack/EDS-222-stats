@@ -92,15 +92,13 @@ Visualizing values of the correlation between two quantities from their scatter 
 ```{r}
 # (i) total & tail:
 possum %>% 
-  summarize(total_tail = cor(total_l, tail_l)) %>% 
-  gt()
+  summarize(total_tail = cor(total_l, tail_l))
 ```
 
 ```{r, fig.margin=TRUE}
 # (ii) head & tail:
 possum %>% 
-  summarize(head_tail = cor(head_l, tail_l)) %>% 
-  gt()
+  summarize(head_tail = cor(head_l, tail_l))
 
 ```
 
@@ -133,9 +131,7 @@ $$\text{possum total length} = \beta_0 + \beta_1 \text{possum tail length} + \ep
 
 ```{r}
 # (i) the length of possum tail affects the length of a possum's body:
-lm(total_l ~ tail_l, data = possum) %>% 
-  tidy %>% 
-  gt()
+summary(lm(total_l ~ tail_l, data = possum))
 ```
 
 The coefficient on tail length tells us that for each additional cm that a possum's tail increases, on average we expect the total length of a possum to increase by 1.24cm. 

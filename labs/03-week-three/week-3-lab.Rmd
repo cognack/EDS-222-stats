@@ -22,7 +22,7 @@ From last week, you should already have done the following:
 
 ```{r setup, include=FALSE, echo = FALSE, eval = FALSE}
 suppressMessages({
-  install.packages( "tidymodels", "gghighlight", "glue", "ggmosaic", "ggridges", "gridExtra", "infer", "janitor", "knitr", "kableExtra", "maps", "openintro", "patchwork", "quantreg", "tidyverse", "scales", "skimr", "caret", "palmerpenguins", "survival", "waffle", "ggrepel", "ggpubr", "openintro")
+  install.packages(c("tidymodels", "gghighlight", "glue", "ggmosaic", "ggridges", "gridExtra", "infer", "janitor", "knitr", "kableExtra", "maps", "openintro", "patchwork", "quantreg", "tidyverse", "scales", "skimr", "caret", "palmerpenguins", "survival", "waffle", "ggrepel", "ggpubr", "openintro"))
 })
 ```
 
@@ -31,19 +31,22 @@ suppressMessages({
 ```{r, echo = FALSE, eval = TRUE, include=TRUE}
 # You probably already have these packages installed, so let's just load them
 library(tidyverse)
+library(tidymodels)
 library(readr)
 library(gt)
 library(openintro)
 library(ggplot2)
 library(modelr)
+library(here)
+library(patchwork)
 
 options(scipen = 999) # disable scientific notation
 
 # Set your file path here! Or, set this up as an .Rproj if you'd like.
-rootdir <- ("~/Dropbox/Teaching/UCSB/EDS_222/EDS222_data")
+rootdir <- ("~/Documents/MEDS_2021_2022/02_Fall_21/EDS222_stats_Carleton/EDS-222-stats")
 
 # This runs the script _common.R, which loads all the packages we'll need for today and does some extra stuff we won't really use, at least for now.
-source(file.path(rootdir,"labs","_common.R"))
+# here("labs","_common.R")
 
 # For labs, we want to see all our code
 knitr::opts_chunk$set(echo = TRUE)
@@ -60,7 +63,35 @@ Split into groups of 2-3 and work on the following for about 10 minutes:
 The data are already loaded in `R`, and can be called using `data = possum`. Take a look at your variable names and make a scatter plot showing  (i) total length as a function of tail length and (ii) head length as a function of tail length. That is, treat tail length as your independent variable. 
 
 1. Make the two scatter plots described above.
+
+```{r}
+glimpse(possum)
+
+head(possum)
+
+
+plot1 <- ggplot(data = possum, aes(x = tail_l, y = total_l)) +
+  geom_point() +
+  labs(x = "tail length (cm)",
+       y = "total length (cm)",
+       title = "Possume Measurements")
+
+
+plot2 <- ggplot(data = possum, aes(x = tail_l, y = head_l)) +
+  geom_point() +
+  labs(x = "tail length (cm)",
+       y = "head length (cm)",
+       title = "Possum Measurements")
+
+plot1 + plot2
+
+
+```
+
+
 2. Discuss whether these two variables appear correlated, what sign you anticipate the correlation to be, and the strength of the correlation you expect.
+
+ **Tail length as a function of total length appears to be positively correlated. Tail length as a function of head length does not appear to be correlated. **
 
 # Section 2: Calculating Correlations
 
@@ -72,7 +103,32 @@ Visualizing values of the correlation between two quantities from their scatter 
   (i) the length of a possum's total length and the length of possum tail:
   (ii) the length of a possum's head and the length of possum tail:
 
+
+```{r}
+
+# (i) finds the correlation between total_l & tail_l
+tot_tail_cor <- possum %>% 
+  summarize(total_tail = cor(total_l, tail_l)) %>% 
+  gt()
+
+
+head_tail_cor <- possum %>% 
+  summarize(head_v_tail = cor(head_l, tail_l)) %>% 
+  gt()
+
+tot_tail_cor
+head_tail_cor
+
+```
+
+
 2. Use the `cor()` function in `R` to calculate the correlation coefficient between the two variables in (i) and the two in (ii). Prize^[Prize in the form of honor and admiration.] to whoever's guess was closest! 
+
+
+```{r}
+
+
+```
 
 
 # Section 3: Simple Linear Regression
@@ -92,11 +148,31 @@ $$\text{possum total length} = \beta_0 + \beta_1 \text{possum tail length} + \ep
 
 1. Use `lm()` to estimate $\hat\beta_0$ and $\hat\beta_1$ using this sample of data. Use `summary(lm())` or `gt()` to visualize the regression results.
 
+
+```{r}
+
+beta <- summary(lm(total_l ~ tail_l, data = possum))
+
+betas <- beta$coefficients %>% 
+  data.frame()
+betas
+
+```
+
+**The coefficient on tail length tells us that for each additional cm that a possum's tail increases, on average we expect the total length of a possum to increase by 1.24cm.**
+
+
 2. Interpret your two coefficients, paying careful attention to units. 
+
+
 
 3. Is your estimate of $\beta_0$ directly interpretable? What might you be concerned about when interpreting $\beta_0$? 
 
+**Would be concerned when values are below 30cm because all possums have tails **
+
 4. Does your model suggest anything about the relationship tail length and body length^[Note that the "total" length is the sum of tail length plus body length.]? Why or why not? 
+
+
 
 5. [If we have time] Repeat the above steps for the relationship between possum tail length and possum head length. Can you learn anything from directly comparing magnitudes of $\hat\beta_1$ across these two regressions?
 
@@ -111,6 +187,20 @@ Here, we visualize our simple linear regression models above using the scatter p
 Use the `geom_smooth()` function with method argument set to `lm`, which stands for “linear model”, to add the best fit OLS line to your scatter plots from Section 1. Use the option `se = FALSE` to turn off estimates of uncertainty. Don't worry, we'll dig into those in a week.
 
 
+```{r}
+# (i) the length of possum tail affects the total length of a possum:
+ggplot(data = possum, aes(y = total_l, x = tail_l)) +
+  geom_point() + 
+  
+  # key function for visualizing linear regression, model = linear model, relate 
+  geom_smooth(method = "lm", formula= y~x, se=FALSE, size=3) + 
+  labs(x = "Length of Possum Tail (cm)",
+       y = "Total Length of Possum (cm)")
+
+
+```
+
+
 ## Residuals, Sum of Squared Errors
 
 The difference between what was observed in the data and what was predicted from the regression line is what we call an "error" or a “residual.” Observations that lie above the regression line exceeded their predicted value and have a _positive residual_. Observations that lie below the regression line are less than their predicted value and have a _negative residual_.
@@ -122,6 +212,24 @@ Recall that one of our assumptions needed in order to prove that OLS is **unbias
 Using the regression of total length on tail length:
 
 1. Add to the `possum` dataframe a column of predicted total lengths $\hat y_i$ and a column of residuals $e_i = y_i-\hat y_i$.^[**Hint:** In `dplyr` you can use `add_predictions(mod)` where `mod` is a regression model to generate a new variable containing your model's predicted values.]
+
+
+```{r}
+
+model_1 <- lm(total_l ~ tail_l, data = possum)
+
+# calculate predictions
+errors <- possum %>% 
+  add_predictions(model_1) %>% 
+  mutate(model = total_l - pred)
+
+# histogram
+errors_hist <- ggplot(data = errors, aes(x = model)) +
+  geom_histogram()
+errors_hist
+
+```
+
 
 2. Make a histogram of your residuals. Do they look approximately normally distributed?
 
