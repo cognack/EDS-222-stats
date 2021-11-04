@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ---
 title: "Course resources"
 ---
@@ -63,3 +64,96 @@ All lecture slides, readings, and labs will be posted here each week. Assignment
 -   RStudio's [`distill` website](https://rstudio.github.io/distill/)
 -   Inspiration and examples from the [distillery](https://distillery.rbind.io/showcase.html)
 -->
+=======
+---
+title: "Course resources"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+<!-- <p style="color: #ba5e00"><b>TO UPDATE THIS PAGE:</b> Open and edit the <b>resources.Rmd</b> file, in the project root, to delete this placeholder text and customize with your own!</p> -->
+
+All lecture slides, readings, and labs will be posted here each week. Assignments will be mentioned here, but all assignments will be posted, submitted, and graded through Github Classrooms.
+
+### Week 1
+
+- **Slides 01**: Course intro [html](slides/01-intro/01-intro.html) [pdf](slides/01-intro/01-intro.pdf)
+
+- **Reading:** 
+  + [Chapter 2](https://openintro-ims.netlify.app/data-design.html), _Introduction to Modern Statistics_
+  + Optional reading: Rolf et al. (2021) ["Representation matters"](https://arxiv.org/abs/2103.03399)
+  + Optional reading/watching: ["Gender shades"](http://gendershades.org/)
+  + Optional watching: Esther Duflo on [Randomized Control Trials](https://www.youtube.com/watch?v=0zvrGiPkVcs)
+
+- **Lab:** No lab this week
+  
+- **Assignment:** Assignment 1 posted 9/23; due 9/30, 5pm
+
+
+### Week 2
+
+- **Slides 02**: Summary statistics [html](slides/02-summstats/02-summstats.html) [pdf](slides/02-summstats/02-summstats.pdf)
+
+- **Reading:** 
+  + [Chapters 4-6](https://openintro-ims.netlify.app/data-design.html), _Introduction to Modern Statistics_
+
+- **Lab:** [setup script](https://www.dropbox.com/s/2pwolalmlai8n5m/_common.R?dl=0), [markdown](labs/02-week-two/week-2-lab.Rmd), [answers](labs/02-week-two/week-2-lab-answers.Rmd), [answers in html](labs/02-week-two/week-2-lab-answers.html). Note: all files also on Github [here](https://github.com/tcarleton/EDS-222-stats)
+  
+- **Assignment:** Assignment 2 posted 9/30; due 10/7, 5pm
+
+### Week 3
+
+- **Slides 03**: Ordinary Least Squares [html](slides/03-ols/03-ols.html) [pdf](slides/03-ols/03-ols.pdf)
+
+- **Reading:** 
+  + [Chapter 7](https://openintro-ims.netlify.app/data-design.html), _Introduction to Modern Statistics_
+
+- **Lab:** OLS in `R` [markdown](labs/03-week-three/week-3-lab.Rmd), [answers](labs/03-week-three/week-3-lab-answers.Rmd), [answers in html](labs/03-week-three/week-3-lab-answers.html). Note: all files also on Github [here](https://github.com/tcarleton/EDS-222-stats)
+  
+- **Assignment:** Assignment 3 posted 10/8; due 10/18, 5pm [Note: deadline delayed from original 10/15]
+
+
+### Week 4
+
+- **Slides 04**: Ordinary Least Squares, continued [html](slides/04-ols-contd/04-ols-contd.html) [pdf](slides/04-ols-contd/04-ols-contd.pdf)
+
+- **Reading:** 
+  + [Chapter 8](https://openintro-ims.netlify.app/data-design.html), _Introduction to Modern Statistics_
+
+- **Lab:** OLS in `R`, continued [markdown](labs/04-week-four/week-4-lab.Rmd), [answers](labs/04-week-four/week-4-lab-answers.Rmd), [answers in html](labs/04-week-four/week-4-lab-answers.html).
+  
+- **Assignment:** Assignment 4 DELAYED until after midterm
+
+### Week 5
+
+- **Slides 05**: Multiple linear regression [html](slides/05-multiplereg/05-multiplereg.html) [pdf](slides/05-multiplereg/05-multiplereg.pdf)
+
+- **Reading:** 
+  + [Chapter 8](https://openintro-ims.netlify.app/data-design.html), _Introduction to Modern Statistics_
+
+- **Lab:** Interaction models in `R` [markdown](labs/05-week-five/week-5-lab.Rmd), [answers](labs/05-week-five/week-5-lab-answers.Rmd), [answers in html](labs/05-week-five/week-5-lab-answers.html).
+  
+- **No assignment** 
+
+### Week 6
+
+- Review \& Midterm Exam
+
+### Week 7
+
+- **Slides 06**: Statistical inference [html](slides/06-inference/06-inference.html) [pdf](slides/06-inference/06-inference.pdf)
+
+- **Reading:** 
+  + [Chapters 13, 19.2](https://openintro-ims.netlify.app/data-design.html), _Introduction to Modern Statistics_
+
+- **Lab:** Hypothesis testing in `R` [markdown](labs/07-week-seven/week-7-lab.Rmd), [answers](labs/07-week-seven/week-7-lab-answers.Rmd), [answers in html](labs/07-week-seven/week-7-lab-answers.html).
+  
+- **Assignment:** Assignment 4 [details TBD]
+
+<!--
+-   RStudio's [`distill` website](https://rstudio.github.io/distill/)
+-   Inspiration and examples from the [distillery](https://distillery.rbind.io/showcase.html)
+-->
+>>>>>>> cc1fdcb567f99250a0045bc927177ef7a655cf6d

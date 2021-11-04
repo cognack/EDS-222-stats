@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ---
 title: "EDS 222: Statistics for Environmental Data Science"
 description: "Master’s of Environmental Data Science Program, UC Santa Barbara"
@@ -112,3 +113,119 @@ The goal of this course is to enable MEDS students to confidently and competentl
 | Finals week   | Final project presentations         | n/a     |
 
 **This webpage was designed following [a template](https://github.com/allisonhorst/meds-distill-template) by Dr. Allison Horst.**
+=======
+---
+title: "EDS 222: Statistics for Environmental Data Science"
+description: "Master’s of Environmental Data Science Program, UC Santa Barbara"
+site: distill::distill_website
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+
+# Learn more about creating websites with Distill at:
+# https://rstudio.github.io/distill/website.html
+
+# Learn more about publishing to GitHub Pages at:
+# https://rstudio.github.io/distill/publish_website.html#github-pages
+
+```
+
+```{r, out.width = "100%", fig.cap = "Image from Informatica [What is data visualization?](https://www.informatica.com/resources/articles/what-is-data-visualization.html)", out.extra="class=external"}
+
+# UPDATE IMAGE HERE 
+# or copy/paste this code elsewhere, updating the file path, to add other images to your site!
+knitr::include_graphics("img/datavis.jpeg")
+```
+
+## Welcome to EDS 222
+
+Statistics is the science of collecting, manipulating, and analyzing empirical data. In this class, we will learn the statistical fundamentals that will enable us to draw conclusions about the environment and its interaction with social and economic systems. We will cover fundamental statistical concepts and tools, and then apply and expand upon those tools to learn some temporal and spatial statistical methods that are particularly helpful in environmental data science. Welcome!  
+
+### Some concepts we'll cover:
+
+- Sampling and study design, descriptive statistics
+
+- Linear and logistic regression (univariate and multivariate)
+
+- Hypothesis testing and inference
+
+- Spatial weighting, spatial clustering, spatial optimization
+
+- Time series analysis, point-wise regression
+
+- Moving window regression, spatial lag models, spatial auto-correlation 
+
+<!-- <p style="color: #ba5e00"><b>TO UPDATE THIS PAGE:</b> Open and edit the <b>index.Rmd</b> file, in the project root, to delete this placeholder text and customize with your own!</p> 
+
+## Course description
+
+<p style="color: #ba5e00"><b>NOTE:</b> A lot of this home page information can be directly from your syllabus.</p>
+
+Add your course description here. -->
+
+## Instructor
+
+Tamma Carleton (tcarleton\@ucsb.edu)
+
+-   **Office:** Bren Hall 3418
+-   **Office hours:** 3pm-4pm Tuesdays
+
+## Important links
+
+-   Syllabus [link](https://www.dropbox.com/s/25d7cbzskz3ucdj/EDS%20222%20Syllabus%20Fall%202021.pdf?dl=0) <!-- (here is the [MEDS optional syllabus template](https://docs.google.com/document/d/1b2CElvwKk-haEA1axY5KvTEBbiSPUf7dIRUNX7gCI6w/edit?usp=sharing)) -->
+
+-   [UCSB Code of Conduct](https://www.sa.ucsb.edu/regulations/student-conduct-code/student-conduct-code)
+
+<!-- -   [Link](https://classroom.github.com/classrooms/89556369-eds222-fall-2021) to course GitHub Classroom -->
+
+
+## Weekly course schedule
+
+-   **Lectures:** Tuesday 9:30am - 10:45am (1414 Bren Hall)
+-   **Labs:** Thursdays 9:30am - 10:45am (1414 Bren Hall)
+
+## Learning objectives
+
+The goal of this course is to enable MEDS students to confidently and competently apply statistical tools to environmental and socio-environmental datasets. 
+
+-   **Master fundamental statistical concepts** and learn to apply them in `R`
+-   **Design, conduct, and interpret linear and nonlinear regression models** 
+-   **Apply spatial statistical methods** to environmental data
+-   **Learn about and address** common spatial and temporal dependency issues that arise in environmental datasets
+
+## Course requirements
+
+### Computing
+
+-   [Minimum MEDS device requirements](https://ucsb-meds.github.io/computer_reqs.html)
+
+-   `R` version 4.0.2 (or higher)
+
+-   RStudio version 1.4.1103 (or higher)
+
+### Textbooks
+
+-   _Introduction to Modern Statistics_, by Mine Çetinkaya-Rundel and Johanna Hardin ([link](https://openintro-ims.netlify.app/))
+
+-   _Geographic Information Analysis_, by David O'Sullivan and David Unwin (optional) [link](https://onlinelibrary.wiley.com/doi/book/10.1002/9780470549094)
+
+## Weekly topics [subject to change] 
+
+| Week | Lecture topics (Tues) | Lab topics (Thurs) |
+|------|----------------|------------|
+| 1    | No class        | Class intro, sampling, study design        |
+| 2    | Summarizing and visualizing data | Summary stats in `R`  |
+| 3    |  Ordinary Least Squares        | OLS in `R`     |
+| 4    |  Multiple linear regression      | Regression in `R`, continued     |
+| 5    | Interaction models and model fit         |   Interactions in `R`  |
+| 6    | Review       | Midterm Exam     |
+| 7    | Statistical inference        | Hypothesis testing in `R`     |
+| 8    | Time series analysis         | No class     |
+| 9    | Interpolation \& kriging         | Spatial weighting     |
+| 10   | Regression in space, spatial autocorrelation         |   No class   |
+| 11   | TBD         | Final project presentations     |
+| Finals week   | Final project presentations         | n/a     |
+
+**This webpage was designed following [a template](https://github.com/allisonhorst/meds-distill-template) by Dr. Allison Horst.**
+>>>>>>> cc1fdcb567f99250a0045bc927177ef7a655cf6d
